@@ -1,38 +1,101 @@
-The idea you decided to work on.
-Within our ALX Hub here in Westlands(The Piano), we have been having an issue when signing in whenever you want to access the co-working. My idea comes in where, instead of a form a user signs in from a website, it shows whether the person using the space is either a Student, an alumnus, or a Staff member. 
-This solves the problem of one dependency of Google Sheets and being able to also keep track of the students, staff, community members, and alumni accessing our hubs. This is also crucial to be able to know who might be coming to the hub, not being a student, an alumnus, or a community member.
-This maximizes security on who is accessing the hub at what time and when they check out. This also ensures that whoever is using the space is a person within the ALX ecosystem.
+ALX Hub Access Management System
+
+This project is a Django-based backend application that manages user access to the ALX Hub in Westlands. It replaces manual Google Sheets sign-ins with a secure system that categorizes users as Students, Alumni, Staff, or Community Members. The system allows administrators to track hub usage in real-time and ensure that only authorized people can access the space.
+
+🚀 Features
+
+User Management (CRUD):
+
+Create a new user profile
+
+Read/view user details
+
+Update existing user information
+
+Delete a user record
+
+Role-based Categorization:
+
+Users are identified as Student, Alumni, Staff, or Community Member.
+
+Admin Panel:
+
+Manage users via Django’s built-in admin interface.
+
+REST API:
+
+Exposed endpoints for programmatic user management.
+
+API Integration (Optional):
+
+Fetch sample users/emails from external APIs for testing.
+
+📂 Project Structure
+alx_hub_access/          # Django project root
+│
+├── alx_hub_access/      # Project settings and configuration
+│   ├── __init__.py
+│   ├── settings.py      # Project settings
+│   ├── urls.py          # Root URL routes
+│   └── wsgi.py
+│
+├── users/               # App handling user profiles
+│   ├── __init__.py
+│   ├── admin.py         # Register models in Django admin
+│   ├── apps.py
+│   ├── migrations/      # Database migrations
+│   ├── models.py        # UserProfile model (name, email, status)
+│   ├── serializers.py   # DRF serializer for UserProfile
+│   ├── tests.py
+│   ├── urls.py          # API endpoints for CRUD
+│   └── views.py         # API views (CRUD logic)
+│
+├── db.sqlite3           # SQLite database
+└── manage.py            # Django management tool
 
 
-What features your project will have?
-My project will be able to fetch data about the following users ;
+📡 API Endpoints
 
-Student
-Staff
-Community member
-Alumni
+Base URL: http://127.0.0.1:8000/api/users/
 
+Method	Endpoint	Description	Example Body
+GET	/api/users/	Get all users	–
+POST	/api/users/	Create a new user	{"name": "Alice", "email": "alice@example.com", "status": "student"}
+GET	/api/users/{id}/	Get a single user by ID	–
+PUT	/api/users/{id}/	Update a user completely	{"name": "Alice J", "email": "alicej@example.com", "status": "alumni"}
+PATCH	/api/users/{id}/	Update a user partially	{"status": "staff"}
+DELETE	/api/users/{id}/	Delete a user	–
 
-This will be able to distinguish users into various apps, with the users in each app, and how they can access the said hubs at that point.
-The API you will be using(optional)
+👉 Note: status must be one of:
 
-I will be using API’s from the following website (https://free-apis.github.io/#/categories/Email) to use as user examples and user emails.
-The models you’ll need, API endpoints, e.t.c
+student
 
+staff
 
-The user profile model will be used to store the name, the email, and their status.
-Student
-Staff
-Community member
-Alumni
+alumni
 
+community
 
-Your plan for doing the project? You have 5 weeks to complete it.
-For the first week, I am in the Idea and planning phase, where I came up with the idea, made plans on how to implement the idea, asked if the idea makes sense, and refined the idea.
-For the second week, I plan to work on the designs for my app and how it will work, generally asking for feedback as I go along.
-For the third week, I will start implementing the final designs and how to make them work.
-For the fourth week, I will still be building and wrapping up the designs.
-For the fifth and final week, I will be making my final submissions and making a video explaining my application.
+🔑 Admin Access
 
+Visit: http://127.0.0.1:8000/admin/
 
+Log in with your superuser credentials.
 
+Manage user profiles directly from the web UI.
+
+🧪 Testing with Postman
+
+Open Postman.
+
+Use http://127.0.0.1:8000/api/users/ as the base URL.
+
+Try each CRUD operation (Create, Read, Update, Delete) with JSON requests.
+
+📌 Future Improvements
+
+Add JWT Authentication to secure API endpoints.
+
+Add check-in/check-out tracking with timestamps.
+
+Generate hub usage reports by role (student, staff, alumni, community).
